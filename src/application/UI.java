@@ -42,7 +42,8 @@ public class UI {
 			char column = s.charAt(0);
 			int row = Integer.parseInt(s.substring(1));
 			return new ChessPosition(column, row);
-		} catch (RuntimeException e) {
+		} 
+		catch (RuntimeException e) {
 			throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8");
 		}
 	}
@@ -55,7 +56,7 @@ public class UI {
 			}
 			System.out.println();
 		}
-		System.out.print(ANSI_BLUE+ "  a b c d e f g h" + ANSI_RESET);
+		System.out.print(ANSI_BLUE + "  a b c d e f g h" + ANSI_RESET);
 
 	}
 
@@ -72,11 +73,12 @@ public class UI {
 
 	private static void printPiece(ChessPiece piece, boolean background) {
 		if (background) {
-			System.out.print(ANSI_WHITE_BACKGROUND);
+				System.out.print(ANSI_WHITE_BACKGROUND);
 		}
 		if (piece == null) {
 			System.out.print(ANSI_GREEN + "-" + ANSI_RESET);
-		} else {
+		} 
+		else {
 			if (piece.getColor() == Color.WHITE) {
 				System.out.print(ANSI_WHITE + piece + ANSI_RESET);
 			} else {
