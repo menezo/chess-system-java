@@ -34,6 +34,8 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+	
+	private static int turn = 0;
 	// https://stackoverflow.com/questions/2979383/java-clear-the-console
 	public static void clearScreen() {
 		System.out.print("\033[H\033[2J");
@@ -57,9 +59,16 @@ public class UI {
 		System.out.println();
 		printCaputredPieces(captured);
 		System.out.println();
-		System.out.println("Turn: " + chessMatch.getTurn());
+		turn = chessMatch.getTurn();
+		System.out.println("Turn: " + turn);
 		if (!chessMatch.getCheckMate()) {
-			System.out.println("Waiting player " + chessMatch.getCurrentPlayer());
+			System.out.print("Waiting player ");// + chessMatch.getCurrentPlayer());
+			if (chessMatch.getCurrentPlayer() == Color.BLACK) {
+				System.out.println(ANSI_YELLOW + chessMatch.getCurrentPlayer() + ANSI_RESET);
+			}
+			else {
+				System.out.println(chessMatch.getCurrentPlayer());
+			}
 			if (chessMatch.getCheck()) {
 				System.out.println(ANSI_RED + "CHECK!" + ANSI_RESET);
 			}
@@ -96,7 +105,12 @@ public class UI {
 
 	private static void printPiece(ChessPiece piece, boolean background) {
 		if (background) {
+			if (turn % 2 == 0) {
+				System.out.print(ANSI_YELLOW_BACKGROUND);
+			}
+			else {
 				System.out.print(ANSI_WHITE_BACKGROUND);
+			}
 		}
 		if (piece == null) {
 			System.out.print(ANSI_GREEN + "-" + ANSI_RESET);
