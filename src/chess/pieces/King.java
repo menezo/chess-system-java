@@ -34,10 +34,8 @@ public class King extends ChessPiece{
 				}
 			}
 		}
-		
 		p.setValues(position.getRow() - 1, position.getColumn() - 1);
-		
-		
+				
 		return mat;
 	}
 }
